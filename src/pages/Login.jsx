@@ -7,7 +7,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
 import Favorite from '@mui/icons-material/Favorite'
 
 // import { useNavigate } from 'react-router-dom'
-import '../scss/login.css'
+// import '../scss/login.css'
 
 
 const Login = () => {
