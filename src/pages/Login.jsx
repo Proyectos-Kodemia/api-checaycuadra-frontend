@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import {Avatar, Grid, Paper} from '@mui/material'
+import {Avatar, Button, Grid, Link, Paper, TextField, Typography} from '@mui/material'
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import Favorite from '@mui/icons-material/Favorite'
 
 // import { useNavigate } from 'react-router-dom'
 import '../scss/login.css'
-import { green } from '@mui/material/colors'
+
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -53,45 +57,40 @@ const Login = () => {
     // navigate.push('/add')
   }
   const paperStyle={padding:20, height: '70vh', width:280, margin:'20px auto'}
-
+  const avatarStyle={backgroundColor:'#075c2c'}
+  const heartStyle={color:'red'}
+  const inputStyle={padding:'8px 0'}
+  const buttonStyle={backgroundColor:'#075c2c', padding:'5px 0', margin:'5px 0' }
   return (
-    <>
-    <Grid align='center'>
-      <Paper elevarion={10} style={paperStyle}>
-        <Avatar sx={{ bgcolor: green[900] }}><LockOpenOutlinedIcon color='second'/></Avatar>
-        <h2>Sing in</h2>
+    
+    <Grid>
+      <Paper elevation={24} variant="outlined" style={paperStyle}>
+        <Grid align='center'>
+          <Avatar style={avatarStyle}><LockOpenOutlinedIcon color='second'/></Avatar>
+          <h2>Checa y Cuadra</h2>
+        </Grid>
+        <TextField label='Email' placeholder='Ingrese Email' color='success' required fullWidth style={inputStyle} onChange={(e) => setEmail(e.target.value)}></TextField>
+        
+        <TextField label='Password' placeholder='Ingrese Password' color='success' type='password' required fullWidth style={inputStyle} onChange={(e) => setPassword(e.target.value)}></TextField>
+        
+        <FormControlLabel style={inputStyle} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite style={heartStyle}/>} />} label="Recordar Usuario" />
+        
+        <Button type='submit' style={buttonStyle} variant='contained' fullWidth onClick={dataLogin}>Ingresar</Button>
+        <Typography>
+          <Link href="#" underline="hover" >
+            ¿Olvidaste la contraseña?
+          </Link>
+        </Typography>
+        <Typography> ¿No tienes cuenta? 
+          <Link href="#" underline="hover">
+            Registrate
+          </Link>
+        </Typography>
+        {credencialsValid && <p>El usuario o contraseña son incorrectos</p>}
+        {emailValid && <p>Los datos son incorrectos</p>}
       </Paper>
     </Grid>
-    <div className='containerPrincipal'>
-      <div className='containerSecundario'>
-        <div className='form-group'>
-          <label>Usuario: </label>
-          <br />
-          <input
-            type='text'
-            placeholder='email'
-            className='form-control'
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br />
-          <label>Password: </label>
-          <br />
-          <input
-            type='password'
-            placeholder='password'
-            className='form-control'
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <button onClick={dataLogin} >
-            Login
-          </button>
-          {credencialsValid && <p>El usuario o contraseña son incorrectos</p>}
-          {emailValid && <p>Los datos son incorrectos</p>}
-        </div>
-      </div>
-    </div>
-    </>
+    
   )
 }
 
