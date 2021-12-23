@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button, Link, TextField, Typography } from "@mui/material";
 
+import {Button, TextField } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 
+import styles from '../scss/styles.module.scss'
+
 const FormLogin = ({ rol }) => {
+  let url='#'
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailValid, setEmailValid] = useState(false);
@@ -27,11 +30,8 @@ const FormLogin = ({ rol }) => {
 
   const heartStyle = { color: "red" };
   const inputStyle = { padding: "8px 0" };
-  const buttonStyle = {
-    backgroundColor: "#075c2c",
-    padding: "5px 0",
-    margin: "5px 0",
-  };
+  const buttonStyle = {backgroundColor: "#075c2c", padding: "5px 0", margin: "5px 0"};
+  const textStyle={color:'red', fontSize:'14px'}
 
   const dataLogin = async () => {
     try {
@@ -66,10 +66,14 @@ const FormLogin = ({ rol }) => {
 
   return (
     <>
+      <span className={styles.remember}>
+        {credencialsValid && <div style={textStyle}>El usuario o contraseña son incorrectos</div>}
+        {emailValid && <div style={textStyle}>Los datos son incorrectos</div>}
+      </span>
       <TextField
         label="Email"
         placeholder="Ingrese Email"
-        color="success"
+        color="secondary"
         required
         fullWidth
         style={inputStyle}
@@ -79,7 +83,7 @@ const FormLogin = ({ rol }) => {
       <TextField
         label="Password"
         placeholder="Ingrese Password"
-        color="success"
+        color="secondary"
         type="password"
         required
         fullWidth
@@ -107,19 +111,11 @@ const FormLogin = ({ rol }) => {
       >
         Ingresar
       </Button>
-      <Typography align="center">
-        <Link href="#" underline="hover">
-          <h6>¿Olvidaste la contraseña?</h6>
-        </Link>
-        <h5>
-          ¿No tienes cuenta?
-          <Link href="#" underline="hover">
-            Registrate
-          </Link>
-        </h5>
-        {credencialsValid && <p>El usuario o contraseña son incorrectos</p>}
-        {emailValid && <p>Los datos son incorrectos</p>}
-      </Typography>
+      <div className={styles.remember}>
+        <a className={styles.pass} href={url}>¿Olvidaste la contraseña?</a>
+        <div className={styles.pass}>¿No tienes cuenta?<a  href={url}>Registrate</a></div>
+      </div>
+          
     </>
   );
 };

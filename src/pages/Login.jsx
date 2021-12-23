@@ -5,9 +5,7 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 
-import "../scss/login.css";
-
-function TabPanel(props) {
+const TabPanel=(props)=> {
   const { children, value, index } = props;
   return (
     <div
@@ -24,34 +22,31 @@ function TabPanel(props) {
 const Login = () => {
   const [value, setValue] = useState(0);
 
+  const paperStyle = {padding: 20, height: "500px", width: 280, margin: "20px auto"};
+  const avatarStyle = { backgroundColor: "#075c2c" };
+  const styleBox={backgroundColor: "#075c2c", color:'white', borderRadius:'10px'}
+  const styleTabs={style:{background:'#8fed4d', height:'7px'}}
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const paperStyle = {
-    padding: 20,
-    height: "82vh",
-    width: 280,
-    margin: "20px auto",
-  };
-  const avatarStyle = { backgroundColor: "#075c2c" };
-  const styleBox={backgroundColor: "rgba(7, 92, 44, 1)", color:'white', borderRadius:'10px'}
+  }
 
   return (
     <Grid>
-      <Paper elevation={24} variant="outlined" style={paperStyle}>
+      <Paper elevation={12} style={paperStyle}>
         <Grid align="center">
           <Avatar style={avatarStyle}>
-            <LockOpenOutlinedIcon color="second" />
+            <LockOpenOutlinedIcon/>
           </Avatar>
           <h2>Checa y Cuadra</h2>
         </Grid>
         <Box>
           <Tabs
+          
             style={styleBox}
             value={value}
             onChange={handleChange}
-            TabIndicatorProps={{style:{background:'cyan'}}}
+            TabIndicatorProps={styleTabs}
             textColor="inherit"
             variant="fullWidth"
           >
